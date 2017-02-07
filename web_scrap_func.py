@@ -81,6 +81,7 @@ def abrir_pagina(url, limparHTML = False):
     o texto.
     Para isto, basta colocar limparHTML = True.
     """
+	
     tentativas = 0
     pagina = ""
     
@@ -119,13 +120,19 @@ def abrir_chrome():
     """ Abre uma janela do Chrome e retorna
     a instância do navegador aberta.
     """
-    browser = webdriver.Chrome()
+	
+    # Ignora erros de certificado e prossegue:
+    opcoes = webdriver.ChromeOptions()
+    opcoes.add_argument('--ignore-certificate-errors')
+    
+    browser = webdriver.Chrome(chrome_options = opcoes)
 
     return browser
     
 
 def fechar_navegador(browser):
     """ Fecha um navegador aberto (qualquer que seja ele). """
+	
     browser.quit()
 
 
@@ -134,6 +141,7 @@ def abrir_pagina_nav(browser, url, tempo = 5):
     pelo programa. Espera um tempo padrão de 5 segundos
     após abrir, para a página carregar.
     """
+	
     browser.get(url)
     time.sleep(tempo)
 
@@ -149,6 +157,7 @@ def clicar_botao(browser, caminho_botao, tempo = 5):
     '//div[@class='container']'
     Seleciona todas as divs de classe container.
     """
+	
     while True:
         try:
             element = browser.find_element_by_xpath(caminho_botao)

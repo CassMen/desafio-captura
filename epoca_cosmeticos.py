@@ -62,7 +62,6 @@ browser = webF.abrir_chrome()
 mais_prod = "//div[@class='btn-load-more confira-todos-produtos']"
 
 
-# Para cada link de marca, acessa a página e captura o conteúdo.
 for contador in range(0, len(links)):
 
     # Abre a página no navegador:
